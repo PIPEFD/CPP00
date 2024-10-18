@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -25,6 +26,7 @@ void process_arguments(int argc, char **str)
             std::cout << (char)std::toupper(str[i][j]);
             j++;
         }
+if ()
         i++;
     }
     std::cout << std::endl;
