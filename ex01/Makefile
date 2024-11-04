@@ -1,7 +1,11 @@
 NAME		=   Phonebook
 OBJ_DIR		=	objs/
 
-SRC_FILES	=	megaphone.cpp
+SRC_FILES	=	Contact.cpp \
+				Contact.hpp \
+				main.cpp \
+				Phonebook.cpp \
+				Phonebook.hpp
 
 OBJS_FILES	=	$(patsubst %.cpp,$(OBJ_DIR)%.o,$(SRC_FILES))
 
