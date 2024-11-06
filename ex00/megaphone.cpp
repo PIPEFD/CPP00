@@ -16,24 +16,28 @@
 #include <bitset>
 
 void process_arguments(int argc, char **str) {
-    int i = 0;
+    (void)argc;
+    int i = 1;
     int j = 0;
-    while (str[i][j]) {
-        unsigned char current_char = (unsigned char)str[i][j];
+    while(i < argc)
+    {
+        while (str[i][j]) {
+            unsigned char current_char = (unsigned char)str[i][j];
 
-        if (current_char == 0xC3 && (unsigned char)str[i][j + 1] == 0xB1) {
-            std::cout << "\xC3\x91";
-            j += 2;
+            if (current_char == 0xC3 && (unsigned char)str[i][j + 1] == 0xB1) {
+                std::cout << "\xC3\x91";
+                j += 2;
+            }
+            else if (current_char >= 'a' && current_char <= 'z') {
+                std::cout << (char)(current_char - ('a' - 'A'));
+                j++;
+            }
+            else {
+                std::cout << current_char;
+                j++;
+            }
         }
-        else if (current_char >= 'a' && current_char <= 'z') {
-            std::cout << (char)(current_char - ('a' - 'A'));
-            j++;
-        }
-        else {
-            std::cout << current_char;
-            j++;
-        }
-    i++;
+        i++;
     }
     std::cout << std::endl;
 }
