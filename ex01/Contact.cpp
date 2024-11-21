@@ -6,11 +6,12 @@
 /*   By: dbonilla <dbonilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 01:07:50 by pipe              #+#    #+#             */
-/*   Updated: 2024/11/06 10:17:52 by dbonilla         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:05:56 by dbonilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
+#include <iostream>
 
 void contact::setfirstname(const std::string &name)
 {
@@ -28,6 +29,7 @@ void contact::setnickname(const std::string &name)
 
 void contact::setphonenumber(const std::string &number)
 {
+    // std::cout << number << std::endl;
     phonenumber = number;
 }
 

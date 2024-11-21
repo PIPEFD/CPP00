@@ -38,6 +38,11 @@ $(OBJ_DIR)%.o: %.cpp
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(FLAGS) -c $< -o $@
 
+sanitize:
+	$(eval FLAGS = -fsanitize=address -g3)
+
+sani: sanitize all
+
 clean:
 	@echo "$(YELLOW)FILES REMOVED!$(DEF_COLOR)"
 	@$(RM) $(OBJ_DIR)

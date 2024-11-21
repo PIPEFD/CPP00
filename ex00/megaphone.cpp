@@ -12,13 +12,13 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include <cstring> // Para std::strlen
-#include <bitset>
+
 
 void process_arguments(int argc, char **str) {
-    (void)argc;
-    int i = 1;
-    int j = 0;
+
+    int i, j;
+    i = 1;
+    j = 0;
     while(i < argc)
     {
         while (str[i][j]) {
@@ -29,7 +29,7 @@ void process_arguments(int argc, char **str) {
                 j += 2;
             }
             else if (current_char >= 'a' && current_char <= 'z') {
-                std::cout << (char)(current_char - ('a' - 'A'));
+            std::cout << (char)std::toupper(current_char);
                 j++;
             }
             else {
@@ -42,22 +42,11 @@ void process_arguments(int argc, char **str) {
     std::cout << std::endl;
 }
 
-void printBits(const unsigned char* str) {
-    int i = 0;
-    while (str[i] != '\0') {
-        std::cout << "Byte " << i + 1 << ": " << std::bitset<8>(str[i]) << std::endl;
-        i++;
-    }
-}
-int main(int argc, char **argv) {
+int main(int argc, char **argv) 
+{
 
     if (argc > 1)
-    {
-        printBits(reinterpret_cast<const unsigned char*>(argv[1]));
         process_arguments(argc, argv);
-        printBits(reinterpret_cast<const unsigned char*>(argv[1]));
-
-    }
     else
         std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
     return 0;

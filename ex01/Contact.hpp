@@ -6,7 +6,7 @@
 /*   By: dbonilla <dbonilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 09:34:19 by dbonilla          #+#    #+#             */
-/*   Updated: 2024/11/06 09:47:43 by dbonilla         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:43:58 by dbonilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class contact
 		void setnickname (const std::string &name);
 		void setphonenumber (const std::string &number);
 		void setdarkestsecret (const std::string &secret);
+        
 
 		std::string getfirstname() const;
 		std::string getlastname() const;
