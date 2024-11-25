@@ -6,7 +6,7 @@
 /*   By: dbonilla <dbonilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 09:52:27 by dbonilla          #+#    #+#             */
-/*   Updated: 2024/11/18 17:33:32 by dbonilla         ###   ########.fr       */
+/*   Updated: 2024/11/25 18:52:17 by dbonilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ class phonebook
     public:
         phonebook();
         void add_contact();
-        // bool isvalidphonenumber(const std::string &number) const;
         void search_contacts() const;
 };
 

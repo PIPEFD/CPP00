@@ -1,16 +1,16 @@
 NAME		=   Phonebook
+
+SRC_DIR		=	src/
+SRC_FILES	=	main.cpp \
+				Contact.cpp \
+				Phonebook.cpp
+
+SRC         =   $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ_DIR		=	objs/
+OBJS_FILES	=	$(SRC_FILES:%.cpp=$(OBJ_DIR)%.o)
 
-SRC_FILES	=	Contact.cpp \
-				Phonebook.cpp \
-				main.cpp
-# Phonebook.cpp \
-# Phonebook.hpp
-
-OBJS_FILES	=	$(patsubst %.cpp,$(OBJ_DIR)%.o,$(SRC_FILES))
-
-CC			= c++ -std=c++98 -g3
-FLAGS		= -Wall -Wextra -Werror
+CC			=  c++
+FLAGS		= -std=c++98 -Wall -Wextra -Werror
 RM			= rm -rf
 
 DEF_COLOR 	= \033[0;39m
@@ -23,20 +23,18 @@ MAGENTA 	= \033[0;95m
 CYAN 		= \033[0;96m
 WHITE 		= \033[0;97m
 CLEAR 		= \033[0m
-OKLOGO 		= \033[80G\033[32m[OK]\033[0m\n
 
 all:		$(NAME)
 
-build_message:
-	@echo "$(BLUE)COMPILING...$(CLEAR)"
-
 $(NAME): $(OBJS_FILES)
-	$(CC) -o $(NAME) $(FLAGS) $(OBJS_FILES)
-	@echo "$(GREEN)MEGAPHONE COMPILED SUCCESSFULLY!$(CLEAR)"
+	@$(CC) $(FLAGS) $(OBJS_FILES) -o $(NAME)
+	@echo "$(GREEN)PHONEBOOK COMPILED SUCCESSFULLY!$(CLEAR)"
 
-$(OBJ_DIR)%.o: %.cpp
+$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 	@mkdir -p $(OBJ_DIR)
+	@echo "$(BLUE)COMPILING $<...$(CLEAR)"
 	@$(CC) $(FLAGS) -c $< -o $@
+
 
 sanitize:
 	$(eval FLAGS = -fsanitize=address -g3)
@@ -45,10 +43,10 @@ sani: sanitize all
 
 clean:
 	@echo "$(YELLOW)FILES REMOVED!$(DEF_COLOR)"
-	@$(RM) $(OBJ_DIR)
+	@if [ -d $(OBJ_DIR) ]; then rm -rf $(OBJ_DIR); fi
 
 fclean: clean
-	@$(RM) $(NAME)
+	@if [ -f $(NAME) ]; then rm -rf $(NAME); fi
 	@echo "$(RED)$(NAME) REMOVED!$(DEF_COLOR)"
 
 re: fclean all

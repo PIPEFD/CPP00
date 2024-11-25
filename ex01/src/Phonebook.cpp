@@ -6,20 +6,54 @@
 /*   By: dbonilla <dbonilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 01:56:56 by dbonilla          #+#    #+#             */
-/*   Updated: 2024/11/18 18:05:17 by dbonilla         ###   ########.fr       */
+/*   Updated: 2024/11/25 18:32:15 by dbonilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Phonebook.hpp"
 #include "iostream"
 #include <iomanip>
+#include <cstdio>
+#include <cstdlib>
+
 
 phonebook::phonebook() :  current_contact_index(0), total_contacts(0)
 {
     
 }
 
+std::string getvalidinput(const std::string &prompt)
+{
+	std::string input;
 
+	while(true)
+	{
+		std::cout << prompt;
+		
+		if (std::getline(std::cin, input).eof())
+        {
+            std::cin.clear();
+            clearerr(stdin);
+                std::cout << "EOF detected" << std::endl;
+            exit(1);
+            // input = getvalidinput(prompt);
+            
+            
+        }
+		if (input.find('\033') !=  std::string::npos)
+		{
+			std::cout << "Invalid input" << std::endl;
+			continue;
+		}
+		if (input.empty())
+		{
+			std::cout << "Input cannot be empty" << std::endl;
+			continue;
+		}
+		break;
+	}
+	return input;
+}
 bool isvalidphonenumber(const std::string &number)
 {
     for (size_t i = 0; i < number.length(); i++)
@@ -34,17 +68,13 @@ void phonebook::add_contact()
     contact new_contact;
     std::string input;
 
-    std::cout << "Enter first Name:";
-    std::getline(std::cin, input);
+    input = getvalidinput("Enter first Name:");
     new_contact.setfirstname(input);
 
-    std::cout << "Enter Last Name:";
-    std::getline(std::cin, input);
+    input = getvalidinput("Enter last Name:");
     new_contact.setlastname(input);
 
-
-    std::cout << "Enter Nickname:";
-    std::getline(std::cin, input);
+    input = getvalidinput("Enter Nickname:");
     new_contact.setnickname(input);
     
     std::cout << "Enter Phone number:";
@@ -52,13 +82,11 @@ void phonebook::add_contact()
     while (input.length() != 9 || !isvalidphonenumber(input)) 
     {
         std::cout << "Please enter a valid phone number with exactly nine digits." << std::endl;
-        std::cout << "Enter Phone number:";
-        std::getline(std::cin, input);
-    }    
+        input = getvalidinput("Enter Phone number:");
+    }
+	new_contact.setphonenumber(input);
 
-
-    std::cout << "Darkest secret:";
-    std::getline(std::cin, input);
+    input = getvalidinput("Enter Darkest secret:");
     new_contact.setdarkestsecret(input);
 
     contacts[current_contact_index] = new_contact;
@@ -86,6 +114,8 @@ void phonebook::display_contact_summary() const
 
 	}
 }
+
+
 void phonebook::search_contacts()const
 {
     display_contact_summary();
@@ -93,7 +123,13 @@ void phonebook::search_contacts()const
     
     int index;
     std::cin >> index;
- 
+    if(std::cin.eof())
+    {
+        std::cin.clear();
+        clearerr(stdin);
+        std::cout << "EOF detected" << std::endl;
+        exit(1);
+    }    
     if (index < 0 || index >= total_contacts)
         std::cout << "Invalid index" << std::endl;
     else
