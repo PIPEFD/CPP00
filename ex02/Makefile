@@ -1,9 +1,8 @@
-NAME		=   Phonebook
+NAME		=   Account
 
 SRC_DIR		=	src/
-SRC_FILES	=	main.cpp \
-				Contact.cpp \
-				Phonebook.cpp
+SRC_FILES	=	Account.cpp \
+				tests.cpp
 
 SRC         =   $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ_DIR		=	objs/
@@ -24,23 +23,22 @@ CYAN 		= \033[0;96m
 WHITE 		= \033[0;97m
 CLEAR 		= \033[0m
 
-all:		$(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJS_FILES)
-	@$(CC) $(FLAGS) $(OBJS_FILES) -o $(NAME)
-	@echo "$(GREEN)PHONEBOOK COMPILED SUCCESSFULLY!$(CLEAR)"
+	@$(CC) -o $(NAME) $(FLAGS) $(OBJS_FILES)
+	@echo "$(GREEN)ACCOUNT COMPILED SUCCESSFULLY!$(CLEAR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 	@mkdir -p $(OBJ_DIR)
 	@echo "$(BLUE)COMPILING $<...$(CLEAR)"
 	@$(CC) $(FLAGS) -c $< -o $@
 
-
 sanitize:
 	$(eval FLAGS = -fsanitize=address -g3)
 
 sani: sanitize all
- 
+
 clean:
 	@echo "$(YELLOW)FILES REMOVED!$(DEF_COLOR)"
 	@if [ -d $(OBJ_DIR) ]; then rm -rf $(OBJ_DIR); fi
