@@ -1,4 +1,4 @@
-NAME		=   Megaphone
+NAME		=   megaphone
 
 SRC_DIR		=	src/
 SRC_FILES	=	megaphone.cpp \

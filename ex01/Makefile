@@ -1,4 +1,4 @@
-NAME		=   Phonebook
+NAME		=   phonebook
 
 SRC_DIR		=	src/
 SRC_FILES	=	main.cpp \

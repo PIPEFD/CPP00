@@ -6,7 +6,7 @@
 /*   By: dbonilla <dbonilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 01:56:56 by dbonilla          #+#    #+#             */
-/*   Updated: 2024/11/28 10:13:04 by dbonilla         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:48:11 by dbonilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,19 +118,25 @@ void phonebook::search_contacts()const
     display_contact_summary();
     std::cout << "Enter index of contact to display:"<< std::endl;
     
-    int index;
-    std::cin >> index;
-    if(std::cin.eof())
+    std::string input;
+    std::getline(std::cin, input);
+    if (int index = atoi(input.c_str()))
     {
-        std::cin.clear();
-        clearerr(stdin);
-        std::cout << "EOF detected" << std::endl;
-        exit(1);
-    }    
-    if (index < 0 || index >= total_contacts)
-        std::cout << "Invalid index" << std::endl;
+        if(std::cin.eof())
+        {
+            std::cin.clear();
+            clearerr(stdin);
+            std::cout << "EOF detected" << std::endl;
+            exit(1);
+        }    
+        if (index < 0 || index >= total_contacts)
+            std::cout << "Invalid index" << std::endl;
+        else
+            return;
+            // display_contact_details(index);
+    }
     else
-        display_contact_details(index);
+        std::cout << "Invalid index" << std::endl;
 }
 
 void phonebook::display_contact_details(int index) const

@@ -1,4 +1,4 @@
-NAME		=   Account
+NAME		=   account
 
 SRC_DIR		=	src/
 SRC_FILES	=	Account.cpp \
