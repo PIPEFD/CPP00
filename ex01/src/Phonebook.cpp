@@ -6,7 +6,7 @@
 /*   By: dbonilla <dbonilla@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 01:56:56 by dbonilla          #+#    #+#             */
-/*   Updated: 2024/11/25 18:32:15 by dbonilla         ###   ########.fr       */
+/*   Updated: 2024/11/28 10:13:04 by dbonilla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,14 @@ std::string getvalidinput(const std::string &prompt)
 
 	while(true)
 	{
-		std::cout << prompt;
+		std::cout << prompt << std::endl;
 		
 		if (std::getline(std::cin, input).eof())
         {
             std::cin.clear();
             clearerr(stdin);
                 std::cout << "EOF detected" << std::endl;
-            exit(1);
-            // input = getvalidinput(prompt);
-            
-            
+            exit(1);       
         }
 		if (input.find('\033') !=  std::string::npos)
 		{
@@ -109,8 +106,8 @@ void phonebook::display_contact_summary() const
 		std::cout   << std::setw(10) << (i) << "|"
 					<< std::setw(10) << (contacts[i].getfirstname().length() > 10 ? contacts[i].getfirstname().substr(0, 9) + "." : contacts[i].getfirstname()) << "|"
 					<< std::setw(10) << (contacts[i].getlastname().length() > 10 ? contacts[i].getlastname().substr(0, 9) + "." : contacts[i].getlastname()) << "|"
-					<< std::setw(10) << (contacts[i].getphonenumber().length() > 10 ? contacts[i].getphonenumber().substr(0, 9) + "." : contacts[i].getphonenumber()) << "|"
-					<< std::setw(10) << (contacts[i].getnickname().length() > 10 ? contacts[i].getnickname().substr(0, 9) + "." : contacts[i].getnickname()) << std::endl;
+					<< std::setw(10) << (contacts[i].getphonenumber().length() > 10 ? contacts[i].getphonenumber().substr(0, 9) + "." : contacts[i].getphonenumber()) << "  |"
+					<< std::setw(10) << (contacts[i].getnickname().length() > 10 ? contacts[i].getnickname().substr(0, 9) + "." : contacts[i].getnickname()) << "|" << std::endl;
 
 	}
 }

@@ -1,4 +1,4 @@
-NAME		=   Phonebook
+NAME		=   Megaphone
 
 SRC_DIR		=	src/
 SRC_FILES	=	megaphone.cpp \

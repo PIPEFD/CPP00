@@ -18,9 +18,9 @@ void process_arguments(int argc, char **str) {
 
     int i, j;
     i = 1;
-    j = 0;
     while(i < argc)
     {
+        j = 0;
         while (str[i][j]) {
             unsigned char current_char = (unsigned char)str[i][j];
 
@@ -37,6 +37,7 @@ void process_arguments(int argc, char **str) {
                 j++;
             }
         }
+        std::cout << " ";
         i++;
     }
     std::cout << std::endl;
